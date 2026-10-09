@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>محكمة الصلح ⚖️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+:root {
+  --text-main: #fff7e6;
+  --text-muted: #bcacd9;
+  --card-bg: rgba(26, 15, 51, 0.84);
+  --card-border: rgba(255, 215, 0, 0.3);
+  --accent-gold: #ffd700;
+  --accent-gold-dark: #b8860b;
+  --accent-rose: #ff2a6d;
+  --accent-rose-dark: #b8003f;
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  /* الخلفية تستخدم الصورة المحفوظة محلياً باسم bg.jpg مع طبقة عتمة داكنة وفخمة لزيادة وضوح النصوص */
+  background: linear-gradient(rgba(15, 8, 33, 0.80), rgba(21, 10, 43, 0.88)), 
+              url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-main);
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  line-height: 1.7;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  padding: 20px 15px 50px;
+}
+
+main {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Card */
+.header-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 24px 20px;
+  box-shadow: 0 15px 35px var(--shadow-color), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  animation: fadeInDown 0.8s ease;
+}
+
+.gavel {
+  font-size: 3.6rem;
+  display: inline-block;
+  transform-origin: 80% 80%;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+.gavel:hover { transform: scale(1.1) rotate(-10deg); }
+.gavel.hit { animation: strike 0.45s ease 2; }
+
+@keyframes strike {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-40deg); }
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1.5px solid var(--accent-gold);
+  color: var(--accent-gold);
+  border-radius: 50px;
+  padding: 2px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-family: 'Lalezar', 'Cairo', sans-serif;
+  font-size: clamp(2.8rem, 10vw, 3.8rem);
+  line-height: 1.1;
+  margin: 8px 0;
+  background: linear-gradient(135deg, #ffffff, var(--accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Case File */
+.case-file {
+  position: relative;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 22px 0;
+  text-align: right;
+  box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+.stamp {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  transform: rotate(-7deg);
+  background: #180b33;
+  border: 2px solid var(--accent-rose);
+  color: var(--accent-rose);
+  font-family: 'Lalezar', sans-serif;
+  font-size: 1.1rem;
+  padding: 2px 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 42, 109, 0.3);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+}
+.row:last-child { border-bottom: none; }
+.key { color: var(--text-muted); font-weight: 600; }
+.value { font-weight: 700; color: #fff; }
+
+/* Buttons */
+.btn-primary {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 40px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-rose), var(--accent-rose-dark));
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(255, 42, 109, 0.45);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(255, 42, 109, 0.6);
+}
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Stage & Wheel Area */
+#stage {
+  display: none;
+  margin-top: 25px;
+}
+#stage.show {
+  display: block;
+  animation: fadeInUp 0.6s ease;
+}
+
+.wheel-wrapper {
+  position: relative;
+  width: min(88vw, 340px);
+  height: min(88vw, 340px);
+  margin: 20px auto 30px;
+  filter: drop-shadow(0 20px 30px var(--shadow-color));
+}
+
+.wheel-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #382163 0%, #150a2b 100%);
+  border: 8px solid #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+#wheel {
+  position: absolute;
+  inset: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  transition: transform 5s cubic-bezier(0.12, 0.8, 0.15, 1);
+}
+
+.pointer {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  z-index: 10;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
+}
+
+.center-cap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd700, #b8860b);
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* Verdict Box */
+#verdict {
+  display: none;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-xl);
+  padding: 26px 20px;
+  margin-top: 25px;
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+}
+#verdict.show {
+  display: block;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#verdict h2 {
+  font-family: 'Lalezar', sans-serif;
+  font-size: 2.2rem;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+#verdict p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.7;
+  color: #ffffff;
+}
+#verdict small {
+  display: block;
+  margin-top: 15px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  z-index: 99;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<main>
+  <div class="header-card">
+    <div class="gavel" id="gavel" title="انقر للمطرقة">🔨</div><br>
+    <span class="tag">جلسة عاجلة وحصرية ⚖️</span>
+    <h1>محكمة الصلح</h1>
+    <p class="sub">القاضية تترأس الجلسة والمتهم يعترف بذنب اللطافة</p>
+  </div>
+
+  <div class="case-file">
+    <div class="stamp">اعتراف رسمـي</div>
+    <div class="row"><span class="key">القاضية:</span><span class="value">شيماء 👑</span></div>
+    <div class="row"><span class="key">المتهم:</span><span class="value">خليل 🙋‍♂️</span></div>
+    <div class="row"><span class="key">التهمة:</span><span class="value">إغضاب أجمل إنسانة</span></div>
+    <div class="row"><span class="key">موقـف الدفاع:</span><span class="value">إقرار كامل بالذنب</span></div>
+    <div class="row"><span class="key">الحكم الصادر:</span><span class="value">تنفيذ اختيار عجلة الحظ</span></div>
+  </div>
+
+  <button id="start" class="btn-primary">افتتاح الجلسة وإحضار العجلة ✨</button>
+
+  <section id="stage">
+    <div class="wheel-wrapper">
+      <svg class="pointer" viewBox="0 0 40 50">
+        <path d="M20 48 L4 8 A18 18 0 0 1 36 8 Z" fill="#ffd700" stroke="#7a5500" stroke-width="2.5"/>
+        <circle cx="20" cy="14" r="5.5" fill="#ff2a6d"/>
+      </svg>
+      
+      <div class="wheel-frame"></div>
+      <svg id="wheel" viewBox="0 0 300 300" aria-label="عجلة الأحكام"></svg>
+      <div class="center-cap">⚖️</div>
+    </div>
+
+    <button id="spin" class="btn-primary">أدِيري العجلة الآن 🎯</button>
+
+    <div id="verdict">
+      <h2>حكمت المحكمة بما هو آتٍ</h2>
+      <p id="text"></p>
+      <small>الحكم نهائي وغير قابل للاستئناف إطلاقاً ⚖️💛</small>
+    </div>
+  </section>
+</main>
+
+<script>
+const items = [
+  ["📞", "مكالمة", "سهرة مكالمة فيديو، وأول خمس دقائق تقولين فيها ما تشائين وأنا أسمع فقط بدون دفاع"],
+  ["🍕", "عشاء", "أطلب لك عشاءً من مطعمك المفضل يصل إلى بابك، ونأكله معًا على مكالمة فيديو"],
+  ["🎬", "فيلم", "ليلة فيلم تختارينه أنتِ ونشاهده بالتزامن، وأنا أعلّق فقط عندما تسمحين"],
+  ["🎧", "أغاني", "أصنع لك قائمة أغاني كاملة بعنوان آسف، وتضيفين عليها الأغنية التي تحبينها"],
+  ["🎮", "لعبة", "نلعب لعبتك المفضلة أونلاين، وأخسر عمدًا ثلاث مرات متتالية"],
+  ["🎁", "هدية", "أرسل لك مفاجأة توصيل إلى باب بيتك، وعليك فقط أن تفتحي الباب"],
+  ["🖼️", "ملفي", "أغيّر صورة ملفي الشخصي إلى صورة تختارينها أنتِ، وأضع في النوت أغنية من اختيارك، وتبقيان كما هما حتى تسمحي لي بتغييرهما"]
+];
+
+const colors = ["#ff3b75", "#7000ff", "#00d2b5", "#ff9f1c", "#2b7fff", "#ef476f", "#05c46b"];
+const n = items.length;
+const seg = 360 / n;
+const wheelEl = document.getElementById('wheel');
+const startBtn = document.getElementById('start');
+const spinBtn = document.getElementById('spin');
+const verdictEl = document.getElementById('verdict');
+const gavelEl = document.getElementById('gavel');
+
+function getPoint(cx, cy, angle, r) {
+  const rad = (angle - 90) * Math.PI / 180;
+  return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+}
+
+let wheelSVG = '';
+items.forEach((item, i) => {
+  const startAngle = i * seg;
+  const endAngle = (i + 1) * seg;
+  const p1 = getPoint(150, 150, startAngle, 146);
+  const p2 = getPoint(150, 150, endAngle, 146);
+  const midAngle = startAngle + seg / 2;
+
+  wheelSVG += `<path d="M150 150 L${p1[0]} ${p1[1]} A146 146 0 0 1 ${p2[0]} ${p2[1]} Z" fill="${colors[i]}" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>`;
+  wheelSVG += `
+    <g transform="rotate(${midAngle} 150 150)">
+      <text x="150" y="52" font-size="28" text-anchor="middle">${item[0]}</text>
+      <text x="150" y="78" font-size="13" font-weight="800" text-anchor="middle" fill="#ffffff" stroke="#0f0821" stroke-width="2.5" paint-order="stroke">${item[1]}</text>
+    </g>`;
+});
+
+wheelEl.innerHTML = wheelSVG;
+
+function playClick() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(580, ctx.currentTime);
+    gain.gain.setValueAtTime(0.04, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.04);
+  } catch(e) {}
+}
+
+gavelEl.onclick = () => {
+  gavelEl.classList.remove('hit');
+  void gavelEl.offsetWidth;
+  gavelEl.classList.add('hit');
+  playClick();
+};
+
+startBtn.onclick = () => {
+  gavelEl.classList.add('hit');
+  playClick();
+  startBtn.style.display = 'none';
+  const stage = document.getElementById('stage');
+  stage.classList.add('show');
+  setTimeout(() => stage.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+};
+
+let isSpinning = false;
+
+spinBtn.onclick = () => {
+  if (isSpinning) return;
+  isSpinning = true;
+  spinBtn.disabled = true;
+
+  const targetIndex = 6; 
+  const targetSegmentCenter = targetIndex * seg + (seg / 2);
+  const extraRounds = 360 * 6; 
+  const finalRotation = extraRounds + (360 - targetSegmentCenter);
+
+  wheelEl.style.transform = `rotate(${finalRotation}deg)`;
+
+  let soundTimer = setInterval(playClick, 140);
+
+  setTimeout(() => {
+    clearInterval(soundTimer);
+    isSpinning = false;
+    
+    const resultText = items[targetIndex][0] + ' ' + items[targetIndex][2];
+    document.getElementById('text').textContent = resultText;
+    verdictEl.classList.add('show');
+    
+    createConfetti();
+    setTimeout(() => verdictEl.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+  }, 5000);
+};
+
+function createConfetti() {
+  const emojis = ["🎉", "✨", "💛", "🎈", "⭐", "🎊", "⚖️", "🖼️"];
+  for (let i = 0; i < 40; i++) {
+    const confetti = document.createElement('span');
+    confetti.className = 'confetti';
+    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.fontSize = (20 + Math.random() * 18) + 'px';
+    confetti.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
+    confetti.style.animationDelay = (Math.random() * 0.4) + 's';
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5500);
+  }
+}
+</script>
+</body>
+</html>
